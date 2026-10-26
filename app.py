@@ -341,5 +341,11 @@ with tab2:
         if os.path.exists(dist_fig):
             st.image(dist_fig, use_container_width=True)
 
+    st.markdown("---")
+    st.markdown("**5. Decision Tree Architecture (Practical 5 Entropy Splits):**")
+    tree_fig = os.path.join(FIGURES_DIR, 'decision_tree_structure.png')
+    if os.path.exists(tree_fig):
+        st.image(tree_fig, caption="Decision Tree Information Gain splits showing how keywords like 'developer', 'java', 'devops', and 'python' branch into job roles.", use_container_width=True)
+
 
 

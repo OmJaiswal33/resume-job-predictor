@@ -22,7 +22,7 @@ from sklearn.metrics import (
 # 4 SOTA Models from student's lab practicals + Baseline
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
@@ -294,6 +294,25 @@ def main():
     plt.savefig(kw_fig_path, dpi=300)
     plt.close()
     print(f"Saved: {kw_fig_path}")
+
+    # 5. Decision Tree Structure Visualization (from Practical 5)
+    dt_model = saved_models['Decision Tree Classifier']
+    plt.figure(figsize=(20, 10))
+    plot_tree(
+        dt_model,
+        max_depth=3,  # Top 3 decision levels for clean presentation
+        feature_names=feature_names,
+        class_names=label_encoder.classes_,
+        filled=True,
+        rounded=True,
+        fontsize=10
+    )
+    plt.title("Decision Tree Architecture (Top Decision Splits from Practical 5)", fontsize=16, fontweight='bold', pad=15)
+    plt.tight_layout()
+    tree_fig_path = os.path.join(FIGURES_DIR, 'decision_tree_structure.png')
+    plt.savefig(tree_fig_path, dpi=300)
+    plt.close()
+    print(f"Saved: {tree_fig_path}")
 
     print("\n" + "=" * 70)
     print("ALL TRAINING & VISUALIZATION ARTIFACTS GENERATED SUCCESSFULLY!")
