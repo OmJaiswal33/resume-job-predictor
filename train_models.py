@@ -214,17 +214,26 @@ def main():
     print("STEP 5: Generating Publication-Grade Figures for 10-Page Report")
     print("=" * 70)
 
-    # 1. Bar Chart of Model Comparison
+    # 1. Bar Chart of Model Comparison (Only 4 Lab Practical Models)
+    practical_models_list = [
+        'Support Vector Machine (Linear SVM)',
+        'Random Forest Classifier',
+        'Decision Tree Classifier',
+        'K-Nearest Neighbors (KNN)'
+    ]
+    plot_df = results_df[results_df['Model'].isin(practical_models_list)].copy()
+    plot_df['Model'] = plot_df['Model'].replace({'Support Vector Machine (Linear SVM)': 'SVM (Linear)'})
+
     plt.figure(figsize=(10, 5))
     bar_width = 0.25
-    x_indices = np.arange(len(results_df))
-    plt.bar(x_indices - bar_width, results_df['Accuracy'], width=bar_width, label='Accuracy (%)', color='#2b5c8f')
-    plt.bar(x_indices, results_df['Precision (Weighted)'], width=bar_width, label='Precision (%)', color='#4682b4')
-    plt.bar(x_indices + bar_width, results_df['F1-Score (Weighted)'], width=bar_width, label='F1-Score (%)', color='#20b2aa')
-    plt.xticks(x_indices, results_df['Model'], rotation=18, ha='right', fontsize=9, fontweight='medium')
+    x_indices = np.arange(len(plot_df))
+    plt.bar(x_indices - bar_width, plot_df['Accuracy'], width=bar_width, label='Accuracy (%)', color='#2b5c8f')
+    plt.bar(x_indices, plot_df['Precision (Weighted)'], width=bar_width, label='Precision (%)', color='#4682b4')
+    plt.bar(x_indices + bar_width, plot_df['F1-Score (Weighted)'], width=bar_width, label='F1-Score (%)', color='#20b2aa')
+    plt.xticks(x_indices, plot_df['Model'], rotation=15, ha='right', fontsize=10, fontweight='medium')
     plt.ylabel('Score (%)', fontsize=11, fontweight='bold')
-    plt.ylim(70, 105)
-    plt.title('Performance Metrics Comparison Across 4 SOTA Models and Baseline', fontsize=12, fontweight='bold', pad=12)
+    plt.ylim(95, 101)
+    plt.title('Performance Metrics Comparison Across 4 Lab Practical Models', fontsize=12, fontweight='bold', pad=12)
     plt.legend(frameon=True, facecolor='white', loc='lower right')
     plt.tight_layout()
     metrics_fig_path = os.path.join(FIGURES_DIR, 'model_comparison_metrics.png')
