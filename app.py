@@ -276,7 +276,7 @@ with tab1:
                         <span style="color:#64748b; font-size:0.9rem; font-weight:600;">HIRING PROBABILITY AT {company_name.upper()}:</span><br>
                         <div class="badge-prob">🎯 {hiring_prob}% Probability</div>
                         <p style="margin-top:10px; color:#475569; font-size:0.9rem;">
-                            Suitability Score: <b>{suitability_score} / 100</b> (Linear Regression formula: $w_0 + w_1 x$).
+                            Suitability Score: <b>{suitability_score} / 100</b> (Linear Regression: w₀ + w₁x).
                         </p>
                     </div>
                     """, unsafe_allow_html=True)
